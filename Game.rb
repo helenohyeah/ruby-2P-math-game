@@ -26,12 +26,24 @@ class Game
 
   def play
 
+    # start a turn if players are alive
+    while players[0].current_life > 0 && players[1].current_life > 0 do
+      self.play_turn
+    end
+    
+    # game over
+    puts "Both players are ded"
+    p players
+
+  end
+
+  def play_turn
     # ask a math question
     current_question = Question.new
     p current_question
     questions.push(current_question)
     puts "Player #{@current_player}: What does #{current_question.num1} plus #{current_question.num2} equal?"
-    
+
     # get answer from user
     current_answer = gets.chomp
 
@@ -40,6 +52,19 @@ class Game
       puts "Yes! You are correct."
     else
       puts "Seriously? No!"
+      # change score
+      players[@current_player - 1].current_life -= 1
+      # p players
+    end
+
+    # print score
+    puts "P1: #{players[0].current_life}/3 vs P2: #{players[1].current_life}/3"
+
+    # change current player
+    if @current_player == 1
+      @current_player = 2
+    elsif @current_player == 2
+      @current_player = 1
     end
 
   end

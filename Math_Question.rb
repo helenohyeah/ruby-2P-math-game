@@ -10,7 +10,7 @@ class Question
   end
 
   def validate(answer)
-    puts "answer: #{answer}, solution: #{solution}, #{answer.to_i == @solution}"
+    # puts "answer: #{answer}, solution: #{solution}, #{answer.to_i == @solution}"
     answer.to_i == @solution
   end
 
