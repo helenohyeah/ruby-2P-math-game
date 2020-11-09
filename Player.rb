@@ -1,4 +1,4 @@
-# tracks player number for turn order
+# create player
 # tracks life ("score")
 class Player
 

@@ -2,8 +2,6 @@ require "./Player"
 require "./Math_Question"
 
 class Game
-  # tracks turn order (current player)
-  # tracks overall game logic and order (ask, wait for ansewer etc)
 
   attr_accessor :current_turn, :current_player
   attr_reader :players
@@ -19,29 +17,24 @@ class Game
     players.push(Player.new(1, gets.chomp))
     puts "Player 2, enter a name: "
     players.push(Player.new(2, gets.chomp))
-    # players.push(Player.new(1, "Helen"))
-    # players.push(Player.new(2, "Shane"))
   end
 
   def play
-
-    puts "****** GAME START ******"
+    puts "\n****** GAME START ******"
 
     # start a turn if players are alive
     while players[0].current_life > 0 && players[1].current_life > 0 do
-      puts "------ NEW TURN ------"
+      puts "\n------ NEW TURN ------"
       self.play_turn
     end
 
     # print winner and winning score    
+    puts "\n------ GAME OVER ------"
     puts "#{players[current_player].name} wins with a score of #{players[current_player].current_life}/3!"
-    puts "------ GAME OVER ------"
     puts "Good bye!"
-
   end
 
   def play_turn
-
     # ask a math question
     current_question = Question.new
     puts "#{players[current_player].name}, what does #{current_question.num1} plus #{current_question.num2} equal?"
@@ -59,7 +52,7 @@ class Game
     end
 
     # print score
-    puts "P1 (#{players[0].name}): #{players[0].current_life}/3 vs P2 (#{players[0].name}): #{players[1].current_life}/3"
+    puts "P1 (#{players[0].name}): #{players[0].current_life}/3 vs P2 (#{players[1].name}): #{players[1].current_life}/3"
     
     # change current player
     if current_player == 0

@@ -1,6 +1,6 @@
-require "./Game" # runs the game, gets user input and gives game updates
-require "./Player" # tracks player information
-require "./Math_Question" # generates questions
+require "./Game"
+require "./Player"
+require "./Math_Question"
 
 game = Game.new
 
