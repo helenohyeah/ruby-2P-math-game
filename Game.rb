@@ -5,13 +5,12 @@ class Game
   # tracks turn order (current player)
   # tracks overall game logic and order (ask, wait for ansewer etc)
 
-  attr_accessor :questions, :current_turn
+  attr_accessor :current_turn, :current_player
   attr_reader :players
 
   def initialize
-    @questions = []
     @current_turn = 0
-    @current_player = 1
+    @current_player = 0
     @players = []
   end
 
@@ -32,17 +31,18 @@ class Game
     end
     
     # game over
-    puts "Both players are ded"
     p players
+    puts "A player is ded"
 
   end
 
   def play_turn
+    p self
+
     # ask a math question
     current_question = Question.new
     p current_question
-    questions.push(current_question)
-    puts "Player #{@current_player}: What does #{current_question.num1} plus #{current_question.num2} equal?"
+    puts "Player #{players[current_player].player_number}: What does #{current_question.num1} plus #{current_question.num2} equal?"
 
     # get answer from user
     current_answer = gets.chomp
@@ -53,7 +53,7 @@ class Game
     else
       puts "Seriously? No!"
       # change score
-      players[@current_player - 1].current_life -= 1
+      players[current_player].current_life -= 1
       # p players
     end
 
@@ -61,10 +61,10 @@ class Game
     puts "P1: #{players[0].current_life}/3 vs P2: #{players[1].current_life}/3"
 
     # change current player
-    if @current_player == 1
-      @current_player = 2
-    elsif @current_player == 2
-      @current_player = 1
+    if current_player == 0
+      self.current_player = 1
+    elsif current_player == 1
+      self.current_player = 0
     end
 
   end

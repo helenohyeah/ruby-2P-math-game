@@ -7,8 +7,6 @@ game = Game.new
 # ASK USER FOR NAMES AND CREATE PLAYERS
 game.create_players
 
-p game
-
 game.play
 
 # announcer.print_score(p1.current_life, p2.current_life)
