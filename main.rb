@@ -4,15 +4,8 @@ require "./Math_Question" # generates questions
 
 game = Game.new
 
-# ASK USER FOR NAMES AND CREATE PLAYERS
+# ask user to create players
 game.create_players
 
+# play game
 game.play
-
-# announcer.print_score(p1.current_life, p2.current_life)
-
-# game.turn(Question.new)
-
-# announcer.print_question(questions[index])
-# answer = gets.chomp
-# puts questions[index].validate(answer)

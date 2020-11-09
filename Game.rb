@@ -15,58 +15,58 @@ class Game
   end
 
   def create_players
-    # puts "Player 1, enter a name: "
-    # players.push(Player.new(1, gets.chomp))
-    # puts "Player 2, enter a name: "
-    # players.push(Player.new(2, gets.chomp))
-    players.push(Player.new(1, "Helen"))
-    players.push(Player.new(2, "Shane"))
+    puts "Player 1, enter a name: "
+    players.push(Player.new(1, gets.chomp))
+    puts "Player 2, enter a name: "
+    players.push(Player.new(2, gets.chomp))
+    # players.push(Player.new(1, "Helen"))
+    # players.push(Player.new(2, "Shane"))
   end
 
   def play
 
+    puts "****** GAME START ******"
+
     # start a turn if players are alive
     while players[0].current_life > 0 && players[1].current_life > 0 do
+      puts "------ NEW TURN ------"
       self.play_turn
     end
-    
-    # game over
-    p players
-    puts "A player is ded"
+
+    # print winner and winning score    
+    puts "#{players[current_player].name} wins with a score of #{players[current_player].current_life}/3!"
+    puts "------ GAME OVER ------"
+    puts "Good bye!"
 
   end
 
   def play_turn
-    p self
 
     # ask a math question
     current_question = Question.new
-    p current_question
-    puts "Player #{players[current_player].player_number}: What does #{current_question.num1} plus #{current_question.num2} equal?"
+    puts "#{players[current_player].name}, what does #{current_question.num1} plus #{current_question.num2} equal?"
 
     # get answer from user
     current_answer = gets.chomp
 
     # validate answer
     if current_question.validate(current_answer) == true
-      puts "Yes! You are correct."
+      puts "Yes! You are correct. ❤️🎇❤️"
     else
-      puts "Seriously? No!"
+      puts "Seriously? No! (╯°□°)╯︵ ┻━┻"
       # change score
       players[current_player].current_life -= 1
-      # p players
     end
 
     # print score
-    puts "P1: #{players[0].current_life}/3 vs P2: #{players[1].current_life}/3"
-
+    puts "P1 (#{players[0].name}): #{players[0].current_life}/3 vs P2 (#{players[0].name}): #{players[1].current_life}/3"
+    
     # change current player
     if current_player == 0
       self.current_player = 1
     elsif current_player == 1
       self.current_player = 0
     end
-
   end
 
 end
