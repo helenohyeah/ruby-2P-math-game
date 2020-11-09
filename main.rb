@@ -1,3 +1,8 @@
+require "./Game"
+require "./Math_Question"
+require "./Player"
+require "./Announcer"
+
 class Player
   # tracks player number for turn order
   # tracks life ("score")
